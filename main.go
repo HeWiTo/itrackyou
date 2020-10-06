@@ -16,15 +16,9 @@ type product struct {
 }
 
 func show() (*product, error) {
-	prd := &product{
-		ActivateDate: "2020-04-24T02:27:37Z",
-		Brand:        "blockbit",
-		Detail:       "eyJjYXRlZ29yeSI6IndoaXRlIHdpbmUiLCJjb250ZW50IjoiMjQlIiwib3JpZ24iOiJBdXN0cmFsaWEifQ==",
-		Name:         "blockbit wine",
-		Organization: "blockbit",
-		ProductCode:  "20123124436",
-		ProductDate:  "2019-06-19",
-		UniCode:      "4GIGj93Ghr",
+	prd, err := getItem("4GIGj93Ghr")
+	if err != nil {
+		return nil, err
 	}
 
 	return prd, nil
