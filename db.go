@@ -39,3 +39,38 @@ func getItem(uniCode string) (*product, error) {
 
 	return prd, nil
 }
+
+func putItem(prd *product) error {
+	input := &dynamodb.PutItemInput{
+		TableName: aws.String("Product"),
+		Item: map[string]*dynamodb.AttributeValue{
+			"activate_date": {
+				S: aws.String(prd.ActivateDate),
+			},
+			"brand": {
+				S: aws.String(prd.Brand),
+			},
+			"detail": {
+				B: []byte(prd.Detail),
+			},
+			"name": {
+				S: aws.String(prd.Name),
+			},
+			"organization": {
+				S: aws.String(prd.Organization),
+			},
+			"product_code": {
+				S: aws.String(prd.ProductCode),
+			},
+			"product_date": {
+				S: aws.String(prd.ProductDate),
+			},
+			"uni_code": {
+				S: aws.String(prd.UniCode),
+			},
+		},
+	}
+
+	_, err := db.PutItem(input)
+	return err
+}
